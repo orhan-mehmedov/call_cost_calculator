@@ -20,9 +20,9 @@ namespace CallCostCalculator
 class InputInterface
 {
 public:
-	virtual bool isKeyExist(const TKey& param) const = 0;
-	virtual const TValue& getParamValue(const TKey& param) const = 0;
-	virtual ~InputInterface(){}
+  virtual bool isKeyExist(const TKey& param) const = 0;
+  virtual const TValue& getParamValue(const TKey& param) const = 0;
+  virtual ~InputInterface(){}
 };
 
 }

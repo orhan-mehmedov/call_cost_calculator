@@ -19,23 +19,23 @@
 using namespace std;
 using namespace CallCostCalculator;
 
-#define CONVERT(VAR, FORMAT)									\
-sscanfRes = ::sscanf(str##VAR##P.c_str(), FORMAT, &m_##VAR);	\
-if((EOF == sscanfRes) || (0 == sscanfRes))						\
-{																\
-	string errMessage("Failed to convert key: ");				\
-	throw invalid_argument(errMessage +cstr##VAR);				\
+#define CONVERT(VAR, FORMAT)                  \
+sscanfRes = ::sscanf(str##VAR##P.c_str(), FORMAT, &m_##VAR);  \
+if((EOF == sscanfRes) || (0 == sscanfRes))            \
+{                                \
+  string errMessage("Failed to convert key: ");        \
+  throw invalid_argument(errMessage +cstr##VAR);        \
 }
 
 CallContextData::CallContextData(
-		const TFixedConnectionFee fixedConnectionFeeP,
-		const TCostPerMinuteInsideOperator costPerMinuteInsideOperatorP,
-		const TFreeTalkingDaysSinceCredit freeTalkingDaysSinceCreditP,
-		const TFreeMinutesInsideOperatorLeft freeMinutesInsideOperatorLeftP,
-		const TDateTimeCredidAdded &dateTimeCredidAddedP,
-		const TCostPerMinuteOutsideOperator costPerMinuteOutsideOperatorP,
-		const TFreeMinutesOnWeekends freeMinutesOnWeekendsP,
-		const THomeNetworkNumbersPrefix& homeNetworkNumbersPrefixP)
+    const TFixedConnectionFee fixedConnectionFeeP,
+    const TCostPerMinuteInsideOperator costPerMinuteInsideOperatorP,
+    const TFreeTalkingDaysSinceCredit freeTalkingDaysSinceCreditP,
+    const TFreeMinutesInsideOperatorLeft freeMinutesInsideOperatorLeftP,
+    const TDateTimeCredidAdded &dateTimeCredidAddedP,
+    const TCostPerMinuteOutsideOperator costPerMinuteOutsideOperatorP,
+    const TFreeMinutesOnWeekends freeMinutesOnWeekendsP,
+    const THomeNetworkNumbersPrefix& homeNetworkNumbersPrefixP)
 :
 m_FixedConnectionFee(fixedConnectionFeeP),
 m_CostPerMinuteInsideOperator(costPerMinuteInsideOperatorP),
@@ -50,118 +50,118 @@ m_HomeNetworkNumbersPrefix(homeNetworkNumbersPrefixP)
 }
 
 CallContextData::CallContextData(
-		const TextKeyValueParserInterface& parser,
-		const std::string& strFixedConnectionFeeP,
-		const std::string& strCostPerMinuteInsideOperatorP,
-		const std::string& strFreeTalkingDaysSinceCreditP,
-		const std::string& strFreeMinutesInsideOperatorLeftP,
-		const std::string& strDateTimeCredidAddedP,
-		const std::string& strCostPerMinuteOutsideOperatorP,
-		const std::string& strFreeMinutesOnWeekendsP,
-		const std::string& strHomeNetworkNumbersPrefixP)
+    const TextKeyValueParserInterface& parser,
+    const std::string& strFixedConnectionFeeP,
+    const std::string& strCostPerMinuteInsideOperatorP,
+    const std::string& strFreeTalkingDaysSinceCreditP,
+    const std::string& strFreeMinutesInsideOperatorLeftP,
+    const std::string& strDateTimeCredidAddedP,
+    const std::string& strCostPerMinuteOutsideOperatorP,
+    const std::string& strFreeMinutesOnWeekendsP,
+    const std::string& strHomeNetworkNumbersPrefixP)
 :
-		m_FixedConnectionFee(),
-		m_CostPerMinuteInsideOperator(),
-		m_FreeTalkingDaysSinceCredit(),
-		m_FreeMinutesInsideOperatorLeft(),
-		m_DateTimeCredidAdded(strDateTimeCredidAddedP, cstrDateTimeFormat),
-		m_CostPerMinuteOutsideOperator(),
-		m_FreeMinutesOnWeekends(),
-		m_HomeNetworkNumbersPrefix()
+    m_FixedConnectionFee(),
+    m_CostPerMinuteInsideOperator(),
+    m_FreeTalkingDaysSinceCredit(),
+    m_FreeMinutesInsideOperatorLeft(),
+    m_DateTimeCredidAdded(strDateTimeCredidAddedP, cstrDateTimeFormat),
+    m_CostPerMinuteOutsideOperator(),
+    m_FreeMinutesOnWeekends(),
+    m_HomeNetworkNumbersPrefix()
 {
-	//Format check & conversion:
+  //Format check & conversion:
 
-	int sscanfRes = 0;
+  int sscanfRes = 0;
 
-	CONVERT(FixedConnectionFee, "%lf");
-	CONVERT(CostPerMinuteInsideOperator, "%lf");
-	CONVERT(FreeTalkingDaysSinceCredit, "%d");
-	CONVERT(FreeMinutesInsideOperatorLeft, "%d");
-	CONVERT(CostPerMinuteOutsideOperator, "%lf");
-	CONVERT(FreeMinutesOnWeekends, "%d");
+  CONVERT(FixedConnectionFee, "%lf");
+  CONVERT(CostPerMinuteInsideOperator, "%lf");
+  CONVERT(FreeTalkingDaysSinceCredit, "%d");
+  CONVERT(FreeMinutesInsideOperatorLeft, "%d");
+  CONVERT(CostPerMinuteOutsideOperator, "%lf");
+  CONVERT(FreeMinutesOnWeekends, "%d");
 
-	TKeyValue keyValue = parser(
-			strHomeNetworkNumbersPrefixP,
-			cstrOperatorPrefixSeparators.c_str()[0]);
+  TKeyValue keyValue = parser(
+      strHomeNetworkNumbersPrefixP,
+      cstrOperatorPrefixSeparators.c_str()[0]);
 
-	if(0 == keyValue.first.length())
-	{
-		throw invalid_argument(
-		"Error while converting operator number prefixes! Check format!");
-	}
+  if(0 == keyValue.first.length())
+  {
+    throw invalid_argument(
+    "Error while converting operator number prefixes! Check format!");
+  }
 
-	m_HomeNetworkNumbersPrefix.insert(keyValue.first);
+  m_HomeNetworkNumbersPrefix.insert(keyValue.first);
 
-	while(0 < keyValue.second.length())
-	{
-		keyValue = parser(
-				keyValue.second,
-				cstrOperatorPrefixSeparators.c_str()[0]);
+  while(0 < keyValue.second.length())
+  {
+    keyValue = parser(
+        keyValue.second,
+        cstrOperatorPrefixSeparators.c_str()[0]);
 
-		m_HomeNetworkNumbersPrefix.insert(keyValue.first);
-	}
+    m_HomeNetworkNumbersPrefix.insert(keyValue.first);
+  }
 
-	//set of string-numbers must contain only numbers
-	THomeNetworkNumbersPrefix::const_iterator it;
+  //set of string-numbers must contain only numbers
+  THomeNetworkNumbersPrefix::const_iterator it;
 
-	for(it=m_HomeNetworkNumbersPrefix.begin();
-		it != m_HomeNetworkNumbersPrefix.end();
-		it++)
-	{
-		if(!isDigitsOnly(*it))
-		{
-			throw invalid_argument(
-			"Operator network prefixes must contain digits only!"
-			" Check format!");
-		}
+  for(it=m_HomeNetworkNumbersPrefix.begin();
+    it != m_HomeNetworkNumbersPrefix.end();
+    it++)
+  {
+    if(!isDigitsOnly(*it))
+    {
+      throw invalid_argument(
+      "Operator network prefixes must contain digits only!"
+      " Check format!");
+    }
 
-		if(ciOperatorPrefixLength != it->length())
-		{
-			throw invalid_argument(
-					string("Operator prefix must have length of ") +
-					Num2Str(ciOperatorPrefixLength) +
-					string(" digits! Check format!"));
-		}
-	}
+    if(ciOperatorPrefixLength != it->length())
+    {
+      throw invalid_argument(
+          string("Operator prefix must have length of ") +
+          Num2Str(ciOperatorPrefixLength) +
+          string(" digits! Check format!"));
+    }
+  }
 }
 
 TFixedConnectionFee CallContextData::getFixedConnectionFee() const
 {
-	return m_FixedConnectionFee;
+  return m_FixedConnectionFee;
 }
 
 TCostPerMinuteInsideOperator CallContextData::getCostPerMinuteInsideOperator() const
 {
-	return m_CostPerMinuteInsideOperator;
+  return m_CostPerMinuteInsideOperator;
 }
 
 TFreeTalkingDaysSinceCredit CallContextData::getFreeTalkingDaysSinceCredit() const
 {
-	return m_FreeTalkingDaysSinceCredit;
+  return m_FreeTalkingDaysSinceCredit;
 }
 
 TFreeMinutesInsideOperatorLeft
 CallContextData::getFreeMinutesInsideOperatorLeft() const
 {
-	return m_FreeMinutesInsideOperatorLeft;
+  return m_FreeMinutesInsideOperatorLeft;
 }
 const TDateTimeCredidAdded& CallContextData::getDateTimeCredidAdded() const
 {
-	return m_DateTimeCredidAdded;
+  return m_DateTimeCredidAdded;
 }
 
 TCostPerMinuteOutsideOperator CallContextData::getCostPerMinuteOutsideOperator() const
 {
-	return m_CostPerMinuteOutsideOperator;
+  return m_CostPerMinuteOutsideOperator;
 }
 
 TFreeMinutesOnWeekends CallContextData::getFreeMinutesOnWeekendsP() const
 {
-	return m_FreeMinutesOnWeekends;
+  return m_FreeMinutesOnWeekends;
 }
 
 const THomeNetworkNumbersPrefix& CallContextData::getHomeNetworkNumbersPrefix() const
 {
-	return m_HomeNetworkNumbersPrefix;
+  return m_HomeNetworkNumbersPrefix;
 }
 

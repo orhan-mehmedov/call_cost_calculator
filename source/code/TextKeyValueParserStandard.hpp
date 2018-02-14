@@ -19,8 +19,8 @@ namespace CallCostCalculator
 class TextKeyValueParserStandard : public TextKeyValueParserInterface
 {
 public:
-	virtual TKeyValue operator()(const std::string& str, const char delimiter) const;
-	virtual ~TextKeyValueParserStandard();
+  virtual TKeyValue operator()(const std::string& str, const char delimiter) const;
+  virtual ~TextKeyValueParserStandard();
 };
 
 }

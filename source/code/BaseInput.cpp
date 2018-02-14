@@ -16,28 +16,28 @@ using namespace CallCostCalculator;
 
 BaseInput::BaseInput()
 :
-	m_KeyValues()
+  m_KeyValues()
 {
 
 }
 
 bool BaseInput::isKeyExist(const TKey& param) const
 {
-	bool result = false;
+  bool result = false;
 
-	TInputParam::const_iterator it;
+  TInputParam::const_iterator it;
 
-	if (m_KeyValues.end() != m_KeyValues.find(param))
-	{
-		result = true;
-	}
+  if (m_KeyValues.end() != m_KeyValues.find(param))
+  {
+    result = true;
+  }
 
-	return result;
+  return result;
 }
 
 const TValue& BaseInput::getParamValue(const TKey& param) const
 {
-	return (m_KeyValues.find(param))->second;
+  return (m_KeyValues.find(param))->second;
 }
 
 BaseInput::~BaseInput()

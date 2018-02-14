@@ -17,22 +17,22 @@ using namespace CallCostCalculator;
 TKeyValue
 TextKeyValueParserStandard::operator()(const std::string& str, char delimiter) const
 {
-	TKey key;
-	TValue value;
+  TKey key;
+  TValue value;
 
-	size_t pos = str.find(delimiter);
+  size_t pos = str.find(delimiter);
 
-	if(pos != string::npos)
-	{
-		key = str.substr(0, pos);
-		value = str.substr(pos+1, string::npos);
-	}
-	else
-	{
-		key = str;//is not key=val, just flag...
-	}
+  if(pos != string::npos)
+  {
+    key = str.substr(0, pos);
+    value = str.substr(pos+1, string::npos);
+  }
+  else
+  {
+    key = str;//is not key=val, just flag...
+  }
 
-	return TKeyValue(key, value);
+  return TKeyValue(key, value);
 }
 
 TextKeyValueParserStandard::~TextKeyValueParserStandard()

@@ -18,33 +18,33 @@ using namespace std;
 using namespace CallCostCalculator;
 
 CallData::CallData(
-		std::string strCallStartDateTime,
-		std::string strCallEndDateTime,
-		std::string strNumberCalled)
+    std::string strCallStartDateTime,
+    std::string strCallEndDateTime,
+    std::string strNumberCalled)
 :
-		m_CallStartDateTime(strCallStartDateTime, cstrDateTimeFormat),
-		m_CallEndDateTime(strCallEndDateTime, cstrDateTimeFormat),
-		m_strNumberCalled(strNumberCalled)
+    m_CallStartDateTime(strCallStartDateTime, cstrDateTimeFormat),
+    m_CallEndDateTime(strCallEndDateTime, cstrDateTimeFormat),
+    m_strNumberCalled(strNumberCalled)
 {
-	if(!isDigitsOnly(m_strNumberCalled))
-	{
-		throw invalid_argument("Number called must contain digits only!");
-	}
+  if(!isDigitsOnly(m_strNumberCalled))
+  {
+    throw invalid_argument("Number called must contain digits only!");
+  }
 }
 
 const DateTime& CallData::getCallStartDateTime() const
 {
-	return m_CallStartDateTime;
+  return m_CallStartDateTime;
 }
 
 const DateTime& CallData::getCallEndDateTime() const
 {
-	return m_CallEndDateTime;
+  return m_CallEndDateTime;
 }
 
 const std::string& CallData::getNumberCalled() const
 {
-	return m_strNumberCalled;
+  return m_strNumberCalled;
 }
 
 

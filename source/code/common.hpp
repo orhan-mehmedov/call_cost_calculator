@@ -24,9 +24,9 @@
 
 #include "DateTime.hpp"
 
-#define SECONDS_PER_HOUR	3600
-#define HOURS_PER_DAY		24
-#define SECONDS_PER_MINUTE	60
+#define SECONDS_PER_HOUR  3600
+#define HOURS_PER_DAY    24
+#define SECONDS_PER_MINUTE  60
 
 namespace CallCostCalculator
 {
@@ -68,34 +68,34 @@ extern const std::string cstrSubscriberAccount;
 
 typedef enum EEvents
 {
-	eEventStartWeekendCall,
-	eEventStartFreeMinutes,
-	eEventStartNormalCall,
+  eEventStartWeekendCall,
+  eEventStartFreeMinutes,
+  eEventStartNormalCall,
 
-	eEventTimeSinceLastCreditAddedOver,
-	eEventNoFreeMinutesLeft,
-	eEventWeekendFirstNFreeMinutesOver,
-	eEventWeekendOver,
-	eEventWeekendStarted,
+  eEventTimeSinceLastCreditAddedOver,
+  eEventNoFreeMinutesLeft,
+  eEventWeekendFirstNFreeMinutesOver,
+  eEventWeekendOver,
+  eEventWeekendStarted,
 
-	eEventCallEnd
+  eEventCallEnd
 }TEventID;
 
 typedef struct SEvent
 {
-	TEventID eventID;
-	time_t timestamp;
+  TEventID eventID;
+  time_t timestamp;
 
-	SEvent() : eventID(eEventCallEnd), timestamp(0) {}
+  SEvent() : eventID(eEventCallEnd), timestamp(0) {}
 
-	bool operator()(const SEvent& ev1, const SEvent& ev2)
-	{
-		return (0 < difftime(ev1.timestamp, ev2.timestamp));
-	}
+  bool operator()(const SEvent& ev1, const SEvent& ev2)
+  {
+    return (0 < difftime(ev1.timestamp, ev2.timestamp));
+  }
 }TEvent;
 
 typedef std::priority_queue<TEvent, std::vector<TEvent>, TEvent> TEventsQueue;
-typedef std::auto_ptr<TEventsQueue>	TEventsQueueAuto;
+typedef std::auto_ptr<TEventsQueue>  TEventsQueueAuto;
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -115,9 +115,9 @@ typedef std::set<std::string> THomeNetworkNumbersPrefix;
 template <class C>
 std::string Num2Str(C num)
 {
-	std::stringstream convert;
-	convert << num;
-	return convert.str();
+  std::stringstream convert;
+  convert << num;
+  return convert.str();
 }
 
 bool isDigitsOnly(const std::string str);

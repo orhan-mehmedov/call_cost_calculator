@@ -21,8 +21,8 @@ namespace CallCostCalculator
 class FeeCalculationAlgorithmInterface
 {
 public:
-	virtual double calculateCallCost(TContext context, TCallData callData) = 0;
-	virtual ~FeeCalculationAlgorithmInterface(){}
+  virtual double calculateCallCost(TContext context, TCallData callData) = 0;
+  virtual ~FeeCalculationAlgorithmInterface(){}
 };
 
 }

@@ -20,8 +20,8 @@ namespace CallCostCalculator
 class SolverStateInterface
 {
 public:
-	virtual void handle(TEvent event) = 0;
-	virtual ~SolverStateInterface(){}
+  virtual void handle(TEvent event) = 0;
+  virtual ~SolverStateInterface(){}
 };
 
 }

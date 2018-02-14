@@ -20,43 +20,43 @@ namespace CallCostCalculator
 
 class DateTime
 {
-	std::auto_ptr<struct tm> m_DateTime;
-	time_t m_TimeInSeconds;//since UNIX epoch
+  std::auto_ptr<struct tm> m_DateTime;
+  time_t m_TimeInSeconds;//since UNIX epoch
 
-	void initWithLocalTime();
+  void initWithLocalTime();
 public:
-	DateTime();
-	explicit DateTime(time_t rawTimeP);
-	DateTime(const DateTime& dateTimeP);
-	explicit DateTime(const tm& dateTimeP);
-	DateTime(const std::string& strDateTime, const std::string& strFormat);
+  DateTime();
+  explicit DateTime(time_t rawTimeP);
+  DateTime(const DateTime& dateTimeP);
+  explicit DateTime(const tm& dateTimeP);
+  DateTime(const std::string& strDateTime, const std::string& strFormat);
 
-	int getSeconds() const;
-	int getMinutes() const;
-	int getHours() const;
-	int getDayOfMonth() const;
-	int getMonth() const;
-	int getYear() const;
-	int getDayOfWeek() const;
+  int getSeconds() const;
+  int getMinutes() const;
+  int getHours() const;
+  int getDayOfMonth() const;
+  int getMonth() const;
+  int getYear() const;
+  int getDayOfWeek() const;
 
-	bool isWeekend() const;
-	void resetToBeginningOfTheDay();
+  bool isWeekend() const;
+  void resetToBeginningOfTheDay();
 
-	//return difference in seconds
-	int operator -(const DateTime& otherObject) const;
+  //return difference in seconds
+  int operator -(const DateTime& otherObject) const;
 
-	time_t getTime() const;
+  time_t getTime() const;
 
-	//adding seconds to current time
-	DateTime& operator+=(int seconds);
-	DateTime& operator=(const DateTime& other);
+  //adding seconds to current time
+  DateTime& operator+=(int seconds);
+  DateTime& operator=(const DateTime& other);
 
-	bool operator<(const DateTime& otherObject) const;
-	bool operator>(const DateTime& otherObject) const;
-	bool operator<=(const DateTime& otherObject) const;
-	bool operator>=(const DateTime& otherObject) const;
-	bool operator==(const DateTime& otherObject) const;
-	bool operator!=(const DateTime& otherObject) const;
+  bool operator<(const DateTime& otherObject) const;
+  bool operator>(const DateTime& otherObject) const;
+  bool operator<=(const DateTime& otherObject) const;
+  bool operator>=(const DateTime& otherObject) const;
+  bool operator==(const DateTime& otherObject) const;
+  bool operator!=(const DateTime& otherObject) const;
 };
 
 std::ostream& operator <<(std::ostream& os, const DateTime& dateTime);

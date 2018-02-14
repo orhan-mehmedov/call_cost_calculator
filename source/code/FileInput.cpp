@@ -24,55 +24,55 @@ namespace CallCostCalculator
 }
 
 FileInput::FileInput(
-		auto_ptr<string> file,
-		auto_ptr<TextKeyValueParserInterface> parser)
+    auto_ptr<string> file,
+    auto_ptr<TextKeyValueParserInterface> parser)
 :
-	m_file(file), m_parser(parser)
+  m_file(file), m_parser(parser)
 {
-	parseInput();
+  parseInput();
 }
 
 void FileInput::parseInput()
 {
-	ifstream inputFile;
+  ifstream inputFile;
 
-	try
-	{
-		inputFile.open(m_file->c_str(), ios::in);
+  try
+  {
+    inputFile.open(m_file->c_str(), ios::in);
 
-		if(!inputFile.is_open())
-		{
-			throw runtime_error(string("FATAL! Can not open file: ") + *m_file);
-		}
+    if(!inputFile.is_open())
+    {
+      throw runtime_error(string("FATAL! Can not open file: ") + *m_file);
+    }
 
-		while(!inputFile.eof())
-		{
-			string line;
+    while(!inputFile.eof())
+    {
+      string line;
 
-			getline(inputFile, line);
+      getline(inputFile, line);
 
-			//TODO: check flags
+      //TODO: check flags
 
-			if(string::npos != line.find(fileInputCommentStart))
-			{
-				continue;
-			}
+      if(string::npos != line.find(fileInputCommentStart))
+      {
+        continue;
+      }
 
-			TKeyValue keyValue = (*m_parser)(line, fileInputParamValueDelimiter);
+      TKeyValue keyValue = (*m_parser)(line, fileInputParamValueDelimiter);
 
-			if(0 < keyValue.first.length())
-			{
-				m_KeyValues.insert(keyValue);
-			}
-		}
-	}
-	catch(...)
-	{
-		inputFile.close();
-		throw;
-	}
+      if(0 < keyValue.first.length())
+      {
+        m_KeyValues.insert(keyValue);
+      }
+    }
+  }
+  catch(...)
+  {
+    inputFile.close();
+    throw;
+  }
 
-	inputFile.close();
+  inputFile.close();
 }
 
 FileInput::~FileInput()

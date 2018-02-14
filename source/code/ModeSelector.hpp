@@ -19,15 +19,15 @@ namespace CallCostCalculator
 
 class ModeSelector
 {
-	CallFeeCalculator *mode;
+  CallFeeCalculator *mode;
 
-	ModeSelector();
-	ModeSelector(const ModeSelector&);
-	void operator =(const ModeSelector&);
+  ModeSelector();
+  ModeSelector(const ModeSelector&);
+  void operator =(const ModeSelector&);
 public:
-	static ModeSelector& getInstance();
+  static ModeSelector& getInstance();
 
-	CallFeeCalculator& getMode();
+  CallFeeCalculator& getMode();
 
 };
 

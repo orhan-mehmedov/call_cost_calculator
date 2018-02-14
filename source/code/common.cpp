@@ -46,21 +46,21 @@ extern const string cstrDateTimeFormat = "%Y-%m-%d %H:%M:%S";
 
 bool isDigitsOnly(const string str)
 {
-	bool result = true;
+  bool result = true;
 
-	size_t i = 0;
+  size_t i = 0;
 
-	while (str[i] != '\0')
-	{
-		if(!isdigit(str[i]))
-		{
-			result = false;
-			break;
-		}
-		++i;
-	}
+  while (str[i] != '\0')
+  {
+    if(!isdigit(str[i]))
+    {
+      result = false;
+      break;
+    }
+    ++i;
+  }
 
-	return result;
+  return result;
 }
 
 } // namespace CallCalculator

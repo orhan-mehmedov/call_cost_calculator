@@ -24,15 +24,15 @@ typedef std::map<TKey, TValue> TInputParam;
 class BaseInput : public InputInterface
 {
 protected:
-	TInputParam m_KeyValues;
+  TInputParam m_KeyValues;
 
-	virtual void parseInput() = 0;
+  virtual void parseInput() = 0;
 
 public:
-	BaseInput();
-	bool isKeyExist(const TKey& param) const;
-	const TValue& getParamValue(const TKey& param) const;
-	virtual ~BaseInput();
+  BaseInput();
+  bool isKeyExist(const TKey& param) const;
+  const TValue& getParamValue(const TKey& param) const;
+  virtual ~BaseInput();
 };
 
 }

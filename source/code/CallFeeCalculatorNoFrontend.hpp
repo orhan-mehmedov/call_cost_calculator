@@ -29,26 +29,26 @@ namespace CallCostCalculator
 
 class CallFeeCalculatorNoFrontend : public CallFeeCalculator
 {
-	std::auto_ptr<InputInterface> m_stdInputCallInfo;
-	std::auto_ptr<InputInterface> m_fileAccountInfoInput;
-	std::auto_ptr<TextKeyValueParserInterface> m_parser;
-	std::auto_ptr<FeeCalculationAlgorithmInterface> m_algorithm;
+  std::auto_ptr<InputInterface> m_stdInputCallInfo;
+  std::auto_ptr<InputInterface> m_fileAccountInfoInput;
+  std::auto_ptr<TextKeyValueParserInterface> m_parser;
+  std::auto_ptr<FeeCalculationAlgorithmInterface> m_algorithm;
 
 protected:
-	virtual TContext getContextData();
-	virtual TCallData getCallInfo();
-	virtual TCallCost callCalculation(TContext context, TCallData callData);
-	virtual void provideResult(TCallCost result);
+  virtual TContext getContextData();
+  virtual TCallData getCallInfo();
+  virtual TCallCost callCalculation(TContext context, TCallData callData);
+  virtual void provideResult(TCallCost result);
 
 public:
-	CallFeeCalculatorNoFrontend(
-			std::auto_ptr<InputInterface> stdInputCallInfo,
-			std::auto_ptr<InputInterface> fileAccountInfoInput,
-			std::auto_ptr<TextKeyValueParserInterface> parser,
-			std::auto_ptr<FeeCalculationAlgorithmInterface> algorithm
-			);
+  CallFeeCalculatorNoFrontend(
+      std::auto_ptr<InputInterface> stdInputCallInfo,
+      std::auto_ptr<InputInterface> fileAccountInfoInput,
+      std::auto_ptr<TextKeyValueParserInterface> parser,
+      std::auto_ptr<FeeCalculationAlgorithmInterface> algorithm
+      );
 
-	virtual ~CallFeeCalculatorNoFrontend();
+  virtual ~CallFeeCalculatorNoFrontend();
 };
 
 } // namespace CallCalculator

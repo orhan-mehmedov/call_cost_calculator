@@ -25,17 +25,17 @@ typedef double TCallCost;
 //Template Method
 class CallFeeCalculator
 {
-	virtual void inputLogicalControl(TContext& context, TCallData& callData);
+  virtual void inputLogicalControl(TContext& context, TCallData& callData);
 
 protected:
-	virtual TContext getContextData() = 0;
-	virtual TCallData getCallInfo() = 0;
-	virtual TCallCost callCalculation(TContext context, TCallData callData) = 0;
-	virtual void provideResult(TCallCost result) = 0;
+  virtual TContext getContextData() = 0;
+  virtual TCallData getCallInfo() = 0;
+  virtual TCallCost callCalculation(TContext context, TCallData callData) = 0;
+  virtual void provideResult(TCallCost result) = 0;
 
 public:
-	void Calculate();
-	virtual ~CallFeeCalculator();
+  void Calculate();
+  virtual ~CallFeeCalculator();
 };
 
 } // namespace CallCalculator

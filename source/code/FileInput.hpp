@@ -24,17 +24,17 @@ typedef std::map<TKey, TValue> TFileInput;
 
 class FileInput : public BaseInput
 {
-	std::auto_ptr<std::string> m_file;
-	std::auto_ptr<TextKeyValueParserInterface> m_parser;
+  std::auto_ptr<std::string> m_file;
+  std::auto_ptr<TextKeyValueParserInterface> m_parser;
 
 protected:
-	virtual void parseInput();
+  virtual void parseInput();
 
 public:
-	FileInput(
-			std::auto_ptr<std::string> file,
-			std::auto_ptr<TextKeyValueParserInterface> parser);
-	virtual ~FileInput();
+  FileInput(
+      std::auto_ptr<std::string> file,
+      std::auto_ptr<TextKeyValueParserInterface> parser);
+  virtual ~FileInput();
 };
 
 }

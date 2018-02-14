@@ -26,23 +26,23 @@ char ** g_Argv;
 
 int main(int argc, char **argv)
 {
-	//Standard input parameters:
-	g_Argc = argc;
-	g_Argv = argv;
+  //Standard input parameters:
+  g_Argc = argc;
+  g_Argv = argv;
 
-	try
-	{
-		ModeSelector& modeSelector = ModeSelector::getInstance();
-		CallFeeCalculator& calculator = modeSelector.getMode();
+  try
+  {
+    ModeSelector& modeSelector = ModeSelector::getInstance();
+    CallFeeCalculator& calculator = modeSelector.getMode();
 
-		calculator.Calculate();
-	}
-	catch(const exception& e)
-	{
-		cerr << "Error occurred! Program will be terminated! "
-				"Please, check next message and make sure "
-				"input data is correct:\n";
-		cerr << e.what() << endl;
-		exit(-1);
-	}
+    calculator.Calculate();
+  }
+  catch(const exception& e)
+  {
+    cerr << "Error occurred! Program will be terminated! "
+        "Please, check next message and make sure "
+        "input data is correct:\n";
+    cerr << e.what() << endl;
+    exit(-1);
+  }
 }

@@ -29,30 +29,30 @@ try
 :
 m_parser(parser)
 {
-	parseInput();
+  parseInput();
 }
 catch(...)
 {
-	//TODO .....................
+  //TODO .....................
 }
 
 void StandardInput::parseInput()
 {
-	int i = 0;
+  int i = 0;
 
-	while(0 != *(g_Argv+i))
-	{
-		if (i >= g_Argc)
-		{
-			break;
-		}
+  while(0 != *(g_Argv+i))
+  {
+    if (i >= g_Argc)
+    {
+      break;
+    }
 
-		string str(*(g_Argv+i));
+    string str(*(g_Argv+i));
 
-		TKeyValue keyValue = (*m_parser)(str, stdInputParamValueDelimiter);
+    TKeyValue keyValue = (*m_parser)(str, stdInputParamValueDelimiter);
 
-		m_KeyValues.insert(keyValue);
+    m_KeyValues.insert(keyValue);
 
-		++i;
-	}
+    ++i;
+  }
 }

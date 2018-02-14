@@ -24,13 +24,13 @@ namespace CallCostCalculator
 class FeeCalculationAlgorithmGeneral : public FeeCalculationAlgorithmInterface
 {
 protected:
-	int secondsToBeChargedSolver(
-			TEventsQueueAuto events,
-			TFreeMinutesOnWeekends freeWeekendMinutes,
-			bool hasFreeMinutesAtTheCallStartP,
-			TFreeMinutesInsideOperatorLeft freeMinutesInsideOperatorLeftP);
+  int secondsToBeChargedSolver(
+      TEventsQueueAuto events,
+      TFreeMinutesOnWeekends freeWeekendMinutes,
+      bool hasFreeMinutesAtTheCallStartP,
+      TFreeMinutesInsideOperatorLeft freeMinutesInsideOperatorLeftP);
 public:
-	virtual double calculateCallCost(TContext context, TCallData callData);
+  virtual double calculateCallCost(TContext context, TCallData callData);
 };
 
 }

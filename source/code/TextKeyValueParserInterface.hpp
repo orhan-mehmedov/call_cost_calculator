@@ -25,8 +25,8 @@ typedef std::pair<TKey, TValue> TKeyValue;
 class TextKeyValueParserInterface
 {
 public:
-	virtual TKeyValue operator()(const std::string& str, const char delimiter) const = 0;
-	virtual ~TextKeyValueParserInterface(){}
+  virtual TKeyValue operator()(const std::string& str, const char delimiter) const = 0;
+  virtual ~TextKeyValueParserInterface(){}
 };
 
 }

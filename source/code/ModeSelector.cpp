@@ -29,62 +29,62 @@ ModeSelector::ModeSelector() : mode()
 
 ModeSelector& ModeSelector::getInstance()
 {
-	static ModeSelector modeSelector;
+  static ModeSelector modeSelector;
 
-	return modeSelector;
+  return modeSelector;
 }
 
 CallFeeCalculator& ModeSelector::getMode()
 {
-	//configure the kind of application:
-	//place to make different choices:
-	//this is kind of "simple" factory
+  //configure the kind of application:
+  //place to make different choices:
+  //this is kind of "simple" factory
 
-	if(0 == mode)
-	{
-		auto_ptr<TextKeyValueParserInterface>
-			parserStdIn(new TextKeyValueParserStandard);
+  if(0 == mode)
+  {
+    auto_ptr<TextKeyValueParserInterface>
+      parserStdIn(new TextKeyValueParserStandard);
 
-		auto_ptr<TextKeyValueParserInterface>
-			parserFileIn(new TextKeyValueParserStandard);
+    auto_ptr<TextKeyValueParserInterface>
+      parserFileIn(new TextKeyValueParserStandard);
 
-		auto_ptr<TextKeyValueParserInterface>
-			parserCallCalculator(new TextKeyValueParserStandard);
+    auto_ptr<TextKeyValueParserInterface>
+      parserCallCalculator(new TextKeyValueParserStandard);
 
-		auto_ptr<InputInterface> stdIn(new StandardInput(parserStdIn));
-		auto_ptr<InputInterface> fileIn;
+    auto_ptr<InputInterface> stdIn(new StandardInput(parserStdIn));
+    auto_ptr<InputInterface> fileIn;
 
-		auto_ptr<FeeCalculationAlgorithmInterface> calculationAlgorithm(
-				new FeeCalculationAlgorithmGeneral());
+    auto_ptr<FeeCalculationAlgorithmInterface> calculationAlgorithm(
+        new FeeCalculationAlgorithmGeneral());
 
-		if(stdIn->isKeyExist(cstrSubscriberAccount))
-		{
-			auto_ptr<string> subscriberAccountFile(
-					new string(stdIn->getParamValue(cstrSubscriberAccount)));
+    if(stdIn->isKeyExist(cstrSubscriberAccount))
+    {
+      auto_ptr<string> subscriberAccountFile(
+          new string(stdIn->getParamValue(cstrSubscriberAccount)));
 
-			fileIn.reset(new FileInput(subscriberAccountFile, parserFileIn));
-		}
+      fileIn.reset(new FileInput(subscriberAccountFile, parserFileIn));
+    }
 
-		if(stdIn->isKeyExist(cstrFrontend))
-		{
-			if(cstrFrontEndNO == stdIn->getParamValue(cstrFrontend))
-			{
-				//call info by stdin
-				//subscriber account / call context -> from file!
-				mode = new CallFeeCalculatorNoFrontend(
-						stdIn, fileIn, parserCallCalculator,
-						calculationAlgorithm);
-			}
-			//else front end = YES
-		}
-		//others...
-	}
+    if(stdIn->isKeyExist(cstrFrontend))
+    {
+      if(cstrFrontEndNO == stdIn->getParamValue(cstrFrontend))
+      {
+        //call info by stdin
+        //subscriber account / call context -> from file!
+        mode = new CallFeeCalculatorNoFrontend(
+            stdIn, fileIn, parserCallCalculator,
+            calculationAlgorithm);
+      }
+      //else front end = YES
+    }
+    //others...
+  }
 
-	if(0 == mode)
-	{
-		throw invalid_argument(
-				"Can not select mode from input parameters!");
-	}
+  if(0 == mode)
+  {
+    throw invalid_argument(
+        "Can not select mode from input parameters!");
+  }
 
-	return *mode;
+  return *mode;
 }

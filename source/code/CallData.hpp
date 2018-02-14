@@ -26,19 +26,19 @@ typedef std::auto_ptr<CallData> TCallData;
 
 class CallData
 {
-	DateTime m_CallStartDateTime;
-	DateTime m_CallEndDateTime;
-	std::string m_strNumberCalled;
+  DateTime m_CallStartDateTime;
+  DateTime m_CallEndDateTime;
+  std::string m_strNumberCalled;
 
 public:
-	CallData(
-			std::string strCallStartDateTime,
-			std::string strCallEndDateTime,
-			std::string strNumberCalled);
+  CallData(
+      std::string strCallStartDateTime,
+      std::string strCallEndDateTime,
+      std::string strNumberCalled);
 
-	const DateTime& getCallStartDateTime() const;
-	const DateTime& getCallEndDateTime() const;
-	const std::string& getNumberCalled() const;
+  const DateTime& getCallStartDateTime() const;
+  const DateTime& getCallEndDateTime() const;
+  const std::string& getNumberCalled() const;
 };
 
 }
