@@ -1,0 +1,34 @@
+# Subscriber account information.
+# This is call calculation context - assumed not changed during ongoing claculation.
+# No spaces are allowed around = sign!
+# In case of errors in format - values may be initialized by default (zeroes)!
+# In case value is missing - calculation will be aborted!
+
+# Fixed connection fee of 0.33 that is added to any call cost. 
+fixedConnectionFee=0.33
+
+# valid for 30 days since the date when last credit was added.
+freeTalkingDaysSinceCredit=100
+
+# Each subscriber has 30 minutes of free talking inside his operator network,
+# valid for 30 days since the date when last credit was added.
+# How much minutes left:
+freeMinutesInsideOperatorLeft=7
+
+# date/time credit was added -> format is "%Y-%m-%d %H:%M:%S"
+dateTimeCredidAdded=2016-06-01 00:03:00
+
+# After free minutes expire, calls inside home operator network are charged 0.50 per minute.
+costPerMinuteInsideOperator=0.5
+
+# When calling numbers outside of home network, minute cost is 0.95.
+costPerMinuteOutsideOperator=0.95
+
+# On weekends, first five minutes of every call are free.
+freeMinutesOnWeekends=5
+
+# We define home network of the operator as a set of phone numbers starting with 
+# one of the given prefixes (050, 066, 095, and 099).
+# comma separated
+homeNetworkNumbersPrefix=050,066,095,099
+
